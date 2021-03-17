@@ -46,6 +46,8 @@ foreach ($reader->readObjects(Foo::class) as $item) {
 }
 ```
 
+**Hint:** You can also pass a `resource` instead of a file's path to `CsvReader`. This way you can also access files from remote filesystems, for example if you are using [`league/flysystem`](https://github.com/thephpleague/flysystem). 
+
 ## Supported types
 
 - `int`

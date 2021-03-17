@@ -15,10 +15,14 @@ class CsvReader
     private CsvReaderOptions $options;
 
     public function __construct(
-        private string $file,
+        private $file,
         ?CsvReaderOptions $options = null
     ) {
         $this->options = $options ?? new CsvReaderOptions();
+
+        if (!is_string($file) && !is_resource($file)) {
+            throw new \TypeError('Fusonic\\CsvReader\\CsvReader::__construct(): Argument #1 ($file) must be of type string or resource.');
+        }
     }
 
     /**
@@ -28,7 +32,13 @@ class CsvReader
      */
     public function readObjects(string $className): iterable
     {
-        $resource = fopen($this->file, 'r');
+        $resource = is_resource($this->file) ? $this->file : fopen($this->file, 'r');
+        $resourcePosition = ftell($resource);
+
+        // Skip the BOM
+        if ($this->options->removeBOM) {
+            $this->skipBOM($resource);
+        }
 
         // Read header
         $header = null;
@@ -44,7 +54,21 @@ class CsvReader
             yield $this->map($row, $className, $mapping);
         }
 
-        fclose($resource);
+        // Rewind resource to its original position or close it if source was a path
+        if (is_resource($this->file)) {
+            fseek($this->file, $resourcePosition);
+        } else {
+            fclose($resource);
+        }
+    }
+
+    private function skipBOM($resource): void
+    {
+        $position = ftell($resource);
+
+        if (fread($resource, 3) !== chr(0xEF).chr(0xBB).chr(0xBF)) {
+            fseek($resource, $position);
+        }
     }
 
     private function map(array $row, string $className, array $mappings): object

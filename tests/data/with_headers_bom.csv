@@ -1,0 +1,7 @@
+﻿Integer,Float,Text,Multiline Text,Date and Time
+1,1.11,Foo,"Foo
+Bar",2020-01-01 01:01:01
+2,1.22,Bar,"Bar
+Baz",2020-02-02 02:02:02
+3,1.33,Baz,"Baz
+Foo",2020-03-03 03:03:03

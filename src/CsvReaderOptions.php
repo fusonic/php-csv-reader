@@ -33,6 +33,11 @@ class CsvReaderOptions
     public bool $hasHeaderRow = true;
 
     /**
+     * Automatically removes the BOM (byte-order mark) from the beginning of the file if there is any.
+     */
+    public bool $removeBOM = true;
+
+    /**
      * Instance of a `ValueConverterInterface` implementation responsible to convert values from the CSV to their
      * respective target types.
      */
