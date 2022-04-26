@@ -32,7 +32,7 @@ class ValueConverter implements ValueConverterInterface
         }
 
         if ('string' === $targetType) {
-            return (string) $value;
+            return $value;
         }
 
         if ('bool' === $targetType) {
@@ -73,6 +73,6 @@ class ValueConverter implements ValueConverterInterface
             DateTime::class,
             DateTimeImmutable::class,
             DateTimeInterface::class,
-        ]);
+        ], true);
     }
 }

@@ -17,7 +17,7 @@ class ValueConverterTest extends TestCase
         $this->vc = new ValueConverter();
     }
 
-    public function intProvider()
+    public function intProvider(): array
     {
         return [
             [1337, '1337'],
@@ -29,15 +29,18 @@ class ValueConverterTest extends TestCase
     /**
      * @dataProvider intProvider
      */
-    public function testConvertInt(int $expected, string $input)
+    public function testConvertInt(int $expected, string $input): void
     {
         $result = $this->vc->convert($input, 'int');
 
-        $this->assertTrue(is_int($result));
-        $this->assertEquals($expected, $result);
+        self::assertTrue(is_int($result));
+        self::assertEquals($expected, $result);
     }
 
-    public function nullableIntProvider()
+    /**
+     * @return array[]
+     */
+    public function nullableIntProvider(): array
     {
         return [
             [1337, '1337'],
@@ -49,14 +52,14 @@ class ValueConverterTest extends TestCase
     /**
      * @dataProvider nullableIntProvider
      */
-    public function testConvertNullableInt(?int $expected, string $input)
+    public function testConvertNullableInt(?int $expected, string $input): void
     {
         $result = $this->vc->convert($input, '?int');
 
-        $this->assertEquals($expected, $result);
+        self::assertEquals($expected, $result);
     }
 
-    public function floatProvider()
+    public function floatProvider(): array
     {
         return [
             [1337, '1337'],
@@ -68,15 +71,18 @@ class ValueConverterTest extends TestCase
     /**
      * @dataProvider floatProvider
      */
-    public function testConvertFloat(float $expected, string $input)
+    public function testConvertFloat(float $expected, string $input): void
     {
         $result = $this->vc->convert($input, 'float');
 
-        $this->assertTrue(is_float($result));
-        $this->assertEquals($expected, $result);
+        self::assertTrue(is_float($result));
+        self::assertEquals($expected, $result);
     }
 
-    public function nullableFloatProvider()
+    /**
+     * @return array[]
+     */
+    public function nullableFloatProvider(): array
     {
         return [
             [1337, '1337'],
@@ -88,14 +94,17 @@ class ValueConverterTest extends TestCase
     /**
      * @dataProvider nullableFloatProvider
      */
-    public function testConvertNullableFloat(?float $expected, string $input)
+    public function testConvertNullableFloat(?float $expected, string $input): void
     {
         $result = $this->vc->convert($input, '?float');
 
-        $this->assertEquals($expected, $result);
+        self::assertEquals($expected, $result);
     }
 
-    public function stringProvider()
+    /**
+     * @return string[][]
+     */
+    public function stringProvider(): array
     {
         return [
             ['1337', '1337'],
@@ -109,15 +118,15 @@ class ValueConverterTest extends TestCase
     /**
      * @dataProvider stringProvider
      */
-    public function testConvertString(string $expected, string $input)
+    public function testConvertString(string $expected, string $input): void
     {
         $result = $this->vc->convert($input, 'string');
 
-        $this->assertTrue(is_string($result));
-        $this->assertEquals($expected, $result);
+        self::assertTrue(is_string($result));
+        self::assertEquals($expected, $result);
     }
 
-    public function nullableStringProvider()
+    public function nullableStringProvider(): array
     {
         return [
             ['1337', '1337'],
@@ -131,14 +140,17 @@ class ValueConverterTest extends TestCase
     /**
      * @dataProvider nullableStringProvider
      */
-    public function testConvertNullableString(?string $expected, string $input)
+    public function testConvertNullableString(?string $expected, string $input): void
     {
         $result = $this->vc->convert($input, '?string');
 
-        $this->assertEquals($expected, $result);
+        self::assertEquals($expected, $result);
     }
 
-    public function boolProvider()
+    /**
+     * @return array[]
+     */
+    public function boolProvider(): array
     {
         return [
             [true, '1'],
@@ -158,15 +170,18 @@ class ValueConverterTest extends TestCase
     /**
      * @dataProvider boolProvider
      */
-    public function testConvertBool(bool $expected, string $input)
+    public function testConvertBool(bool $expected, string $input): void
     {
         $result = $this->vc->convert($input, 'bool');
 
-        $this->assertTrue(is_bool($result));
-        $this->assertEquals($expected, $result);
+        self::assertTrue(is_bool($result));
+        self::assertEquals($expected, $result);
     }
 
-    public function nullableBoolProvider()
+    /**
+     * @return array[]
+     */
+    public function nullableBoolProvider(): array
     {
         return [
             [true, '1'],
@@ -186,14 +201,17 @@ class ValueConverterTest extends TestCase
     /**
      * @dataProvider nullableBoolProvider
      */
-    public function testConvertNullableBool(?bool $expected, string $input)
+    public function testConvertNullableBool(?bool $expected, string $input): void
     {
         $result = $this->vc->convert($input, '?bool');
 
-        $this->assertEquals($expected, $result);
+        self::assertEquals($expected, $result);
     }
 
-    public function dateTimeProvider()
+    /**
+     * @return string[][]
+     */
+    public function dateTimeProvider(): array
     {
         return [
             ['2020-02-04 00:00:00', '2020-02-04'],
@@ -208,69 +226,72 @@ class ValueConverterTest extends TestCase
     /**
      * @dataProvider dateTimeProvider
      */
-    public function testConvertDateTime(string $expected, mixed $input)
+    public function testConvertDateTime(string $expected, mixed $input): void
     {
         $result = $this->vc->convert($input, DateTime::class);
 
-        $this->assertTrue($result instanceof DateTime);
-        $this->assertEquals($expected, $result->format('Y-m-d H:i:s'));
+        self::assertTrue($result instanceof DateTime);
+        self::assertEquals($expected, $result->format('Y-m-d H:i:s'));
     }
 
     /**
      * @dataProvider dateTimeProvider
      */
-    public function testConvertNullableDateTime(string $expected, mixed $input)
+    public function testConvertNullableDateTime(string $expected, mixed $input): void
     {
         $result = $this->vc->convert($input, '?'.DateTime::class);
 
-        $this->assertTrue($result instanceof DateTime);
-        $this->assertEquals($expected, $result->format('Y-m-d H:i:s'));
+        self::assertTrue($result instanceof DateTime);
+        self::assertEquals($expected, $result->format('Y-m-d H:i:s'));
     }
 
     /**
      * @dataProvider dateTimeProvider
      */
-    public function testConvertDateTimeInterface(string $expected, mixed $input)
+    public function testConvertDateTimeInterface(string $expected, mixed $input): void
     {
         $result = $this->vc->convert($input, DateTimeInterface::class);
 
-        $this->assertTrue($result instanceof DateTimeInterface);
-        $this->assertEquals($expected, $result->format('Y-m-d H:i:s'));
+        self::assertTrue($result instanceof DateTimeInterface);
+        self::assertEquals($expected, $result->format('Y-m-d H:i:s'));
     }
 
     /**
      * @dataProvider dateTimeProvider
      */
-    public function testConvertNullableDateTimeInterface(string $expected, mixed $input)
+    public function testConvertNullableDateTimeInterface(string $expected, mixed $input): void
     {
         $result = $this->vc->convert($input, '?'.DateTimeInterface::class);
 
-        $this->assertTrue($result instanceof DateTimeInterface);
-        $this->assertEquals($expected, $result->format('Y-m-d H:i:s'));
+        self::assertTrue($result instanceof DateTimeInterface);
+        self::assertEquals($expected, $result->format('Y-m-d H:i:s'));
     }
 
     /**
      * @dataProvider dateTimeProvider
      */
-    public function testConvertDateTimeImmutable(string $expected, mixed $input)
+    public function testConvertDateTimeImmutable(string $expected, mixed $input): void
     {
         $result = $this->vc->convert($input, DateTimeImmutable::class);
 
-        $this->assertTrue($result instanceof DateTimeImmutable);
-        $this->assertEquals($expected, $result->format('Y-m-d H:i:s'));
+        self::assertTrue($result instanceof DateTimeImmutable);
+        self::assertEquals($expected, $result->format('Y-m-d H:i:s'));
     }
 
     /**
      * @dataProvider dateTimeProvider
      */
-    public function testConvertNullableDateTimeImmutable(string $expected, mixed $input)
+    public function testConvertNullableDateTimeImmutable(string $expected, mixed $input): void
     {
         $result = $this->vc->convert($input, '?'.DateTimeImmutable::class);
 
-        $this->assertTrue($result instanceof DateTimeImmutable);
-        $this->assertEquals($expected, $result->format('Y-m-d H:i:s'));
+        self::assertTrue($result instanceof DateTimeImmutable);
+        self::assertEquals($expected, $result->format('Y-m-d H:i:s'));
     }
 
+    /**
+     * @return string[][]
+     */
     public function nullValuesProvider(): array
     {
         return [
@@ -284,13 +305,13 @@ class ValueConverterTest extends TestCase
     /**
      * @dataProvider nullValuesProvider
      */
-    public function testConvertNullables($value)
+    public function testConvertNullables(mixed $value): void
     {
-        $this->assertNull($this->vc->convert($value, '?int'));
-        $this->assertNull($this->vc->convert($value, '?float'));
-        $this->assertNull($this->vc->convert($value, '?string'));
-        $this->assertNull($this->vc->convert($value, '?'.DateTime::class));
-        $this->assertNull($this->vc->convert($value, '?'.DateTimeImmutable::class));
-        $this->assertNull($this->vc->convert($value, '?'.DateTimeInterface::class));
+        self::assertNull($this->vc->convert($value, '?int'));
+        self::assertNull($this->vc->convert($value, '?float'));
+        self::assertNull($this->vc->convert($value, '?string'));
+        self::assertNull($this->vc->convert($value, '?'.DateTime::class));
+        self::assertNull($this->vc->convert($value, '?'.DateTimeImmutable::class));
+        self::assertNull($this->vc->convert($value, '?'.DateTimeInterface::class));
     }
 }

@@ -20,8 +20,9 @@ final class MethodMappingInfo extends MappingInfo
         parent::__construct($targetType, $sourceIndex);
     }
 
-    public function setValue($object, $value): void
+    public function setValue(object $object, mixed $value): void
     {
+        // @phpstan-ignore-next-line
         $object->{$this->methodName}($value);
     }
 }

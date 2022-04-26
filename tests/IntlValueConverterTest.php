@@ -17,8 +17,8 @@ class IntlValueConverterTest extends TestCase
         $this->vc = new IntlValueConverter('de-AT');
     }
 
-    public function testConvertFloat()
+    public function testConvertFloat(): void
     {
-        $this->assertEquals(1337.37, $this->vc->convert('1337,37', 'float'));
+        self::assertEquals(1337.37, $this->vc->convert('1337,37', 'float'));
     }
 }

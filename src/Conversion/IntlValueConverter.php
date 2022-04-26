@@ -16,7 +16,7 @@ class IntlValueConverter extends ValueConverter
     private NumberFormatter $numberFormatter;
 
     public function __construct(
-        private string $locale,
+        string $locale,
     ) {
         $this->numberFormatter = new NumberFormatter($locale, NumberFormatter::TYPE_DEFAULT);
     }

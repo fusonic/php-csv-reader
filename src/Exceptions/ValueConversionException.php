@@ -7,10 +7,9 @@ declare(strict_types=1);
 
 namespace Fusonic\CsvReader\Exceptions;
 
-use Exception;
 use Throwable;
 
-final class ValueConversionException extends Exception
+final class ValueConversionException extends CsvReaderException
 {
     public const TYPE_NOT_SUPPORTED = 1;
     public const CONVERSION_FAILED = 2;

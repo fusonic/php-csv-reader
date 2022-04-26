@@ -28,5 +28,5 @@ abstract class MappingInfo
         return $this->sourceIndex;
     }
 
-    abstract public function setValue($object, $value): void;
+    abstract public function setValue(object $object, mixed $value): void;
 }

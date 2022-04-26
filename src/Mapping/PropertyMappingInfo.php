@@ -25,8 +25,9 @@ final class PropertyMappingInfo extends MappingInfo
         return $this->propertyName;
     }
 
-    public function setValue($object, $value): void
+    public function setValue(object $object, mixed $value): void
     {
+        // @phpstan-ignore-next-line
         $object->{$this->propertyName} = $value;
     }
 }

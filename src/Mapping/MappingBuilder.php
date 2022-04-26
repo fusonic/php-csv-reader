@@ -19,6 +19,10 @@ use ReflectionProperty;
  */
 final class MappingBuilder
 {
+    /**
+     * @param array<int, string>|null $header
+     * @param class-string            $className
+     */
     public function build(?array $header, string $className): array
     {
         $class = new \ReflectionClass($className);
@@ -46,15 +50,20 @@ final class MappingBuilder
         return $mapping;
     }
 
-    private function getColumnIndexFromAttribute(ReflectionProperty | ReflectionMethod $target, ?array $header): ?int
+    /**
+     * @param array<int, string>|null $header
+     */
+    private function getColumnIndexFromAttribute(ReflectionProperty|ReflectionMethod $target, ?array $header): ?int
     {
         // First find mapping attribute for this target
 
         $attributes = $target->getAttributes(MappingAttribute::class, \ReflectionAttribute::IS_INSTANCEOF);
 
-        if (empty($attributes)) {
+        if (0 === count($attributes)) {
             return null;
-        } elseif (count($attributes) > 1) {
+        }
+
+        if (count($attributes) > 1) {
             throw new MappingException(sprintf('Multiple mapping attributes found on %s::%s.', $target->getDeclaringClass()->getName(), $target->getName()), MappingException::MULTIPLE_MAPPING_ATTRIBUTES_FOUND);
         }
 
@@ -69,7 +78,7 @@ final class MappingBuilder
                 throw new MappingException('CSV has no header row. So using TitleAttribute is not valid.', MappingException::MISSING_HEADER_ROW);
             }
 
-            $index = array_search($attribute->getTitle(), $header);
+            $index = array_search($attribute->getTitle(), $header, true);
 
             if (false === $index) {
                 throw new MappingException(sprintf('Column with title "%s" not found in CSV.', $attribute->getTitle()), MappingException::COLUMN_NOT_FOUND);

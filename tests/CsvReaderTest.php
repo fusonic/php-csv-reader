@@ -15,27 +15,31 @@ use PHPUnit\Framework\TestCase;
 
 class CsvReaderTest extends TestCase
 {
-    public function testReadWithHeadersAndTitleMapping()
+    public function testReadWithHeadersAndTitleMapping(): void
     {
         $reader = new CsvReader(__DIR__.'/data/with_headers.csv');
 
         $item = iterator_to_array($reader->readObjects(WithHeadersModel::class))[0];
 
-        $this->assertEquals(1, $item->field);
-        $this->assertEquals(1.11, $item->methodBackingField);
+        self::assertObjectHasAttribute('field', $item);
+        self::assertObjectHasAttribute('methodBackingField', $item);
+        self::assertEquals(1, $item->field);
+        self::assertEquals(1.11, $item->methodBackingField);
     }
 
-    public function testReadWithHeadersAndTitleMappingAsResource()
+    public function testReadWithHeadersAndTitleMappingAsResource(): void
     {
         $reader = new CsvReader(fopen(__DIR__.'/data/with_headers.csv', 'r'));
 
         $item = iterator_to_array($reader->readObjects(WithHeadersModel::class))[0];
 
-        $this->assertEquals(1, $item->field);
-        $this->assertEquals(1.11, $item->methodBackingField);
+        self::assertObjectHasAttribute('field', $item);
+        self::assertObjectHasAttribute('methodBackingField', $item);
+        self::assertEquals(1, $item->field);
+        self::assertEquals(1.11, $item->methodBackingField);
     }
 
-    public function testResourceIsRewinded()
+    public function testResourceIsRewinded(): void
     {
         $reader = new CsvReader(fopen(__DIR__.'/data/with_headers.csv', 'r'));
 
@@ -44,21 +48,25 @@ class CsvReaderTest extends TestCase
         // Read once again
         $item = iterator_to_array($reader->readObjects(WithHeadersModel::class))[0];
 
-        $this->assertEquals(1, $item->field);
-        $this->assertEquals(1.11, $item->methodBackingField);
+        self::assertObjectHasAttribute('field', $item);
+        self::assertObjectHasAttribute('methodBackingField', $item);
+        self::assertEquals(1, $item->field);
+        self::assertEquals(1.11, $item->methodBackingField);
     }
 
-    public function testReadWithHeadersAndIndexMapping()
+    public function testReadWithHeadersAndIndexMapping(): void
     {
         $reader = new CsvReader(__DIR__.'/data/with_headers.csv');
 
         $item = iterator_to_array($reader->readObjects(WithoutHeadersModel::class))[0];
 
-        $this->assertEquals(1, $item->field);
-        $this->assertEquals(1.11, $item->methodBackingField);
+        self::assertObjectHasAttribute('field', $item);
+        self::assertObjectHasAttribute('methodBackingField', $item);
+        self::assertEquals(1, $item->field);
+        self::assertEquals(1.11, $item->methodBackingField);
     }
 
-    public function testReadWithoutHeadersAndIndexMapping()
+    public function testReadWithoutHeadersAndIndexMapping(): void
     {
         $options = new CsvReaderOptions();
         $options->hasHeaderRow = false;
@@ -67,11 +75,13 @@ class CsvReaderTest extends TestCase
 
         $item = iterator_to_array($reader->readObjects(WithoutHeadersModel::class))[0];
 
-        $this->assertEquals(1, $item->field);
-        $this->assertEquals(1.11, $item->methodBackingField);
+        self::assertObjectHasAttribute('field', $item);
+        self::assertObjectHasAttribute('methodBackingField', $item);
+        self::assertEquals(1, $item->field);
+        self::assertEquals(1.11, $item->methodBackingField);
     }
 
-    public function testCsvSettingsChangedDelimiterAndEnclosure()
+    public function testCsvSettingsChangedDelimiterAndEnclosure(): void
     {
         $options = new CsvReaderOptions();
         $options->delimiter = ';';
@@ -84,12 +94,14 @@ class CsvReaderTest extends TestCase
         };
 
         foreach ($reader->readObjects($class::class) as $item) {
-            $this->assertEquals(1, $item->field1);
-            $this->assertEquals(';', $item->field2);
+            self::assertObjectHasAttribute('field1', $item);
+            self::assertObjectHasAttribute('field2', $item);
+            self::assertEquals(1, $item->field1);
+            self::assertEquals(';', $item->field2);
         }
     }
 
-    public function testBomRemovalautoRemoveIfExistent()
+    public function testBomRemovalautoRemoveIfExistent(): void
     {
         $options = new CsvReaderOptions();
         $options->removeBOM = true;
@@ -97,10 +109,11 @@ class CsvReaderTest extends TestCase
         $reader = new CsvReader(__DIR__.'/data/with_headers_bom.csv', $options);
         $item = iterator_to_array($reader->readObjects(WithHeadersModel::class))[0];
 
-        $this->assertEquals(1, $item->field);
+        self::assertObjectHasAttribute('field', $item);
+        self::assertEquals(1, $item->field);
     }
 
-    public function testBomRemovaldontChangeIfNotExistent()
+    public function testBomRemovaldontChangeIfNotExistent(): void
     {
         $options = new CsvReaderOptions();
         $options->removeBOM = true;
@@ -108,10 +121,11 @@ class CsvReaderTest extends TestCase
         $reader = new CsvReader(__DIR__.'/data/with_headers.csv', $options);
         $item = iterator_to_array($reader->readObjects(WithHeadersModel::class))[0];
 
-        $this->assertEquals(1, $item->field);
+        self::assertObjectHasAttribute('field', $item);
+        self::assertEquals(1, $item->field);
     }
 
-    public function testBomRemovalfailIfExistsAndNotAutoremoved()
+    public function testBomRemovalfailIfExistsAndNotAutoremoved(): void
     {
         // The field will not be found because it's title is prefixed with the BOM!
         $this->expectException(MappingException::class);
@@ -122,10 +136,11 @@ class CsvReaderTest extends TestCase
         $reader = new CsvReader(__DIR__.'/data/with_headers_bom.csv', $options);
         $item = iterator_to_array($reader->readObjects(WithHeadersModel::class))[0];
 
-        $this->assertEquals(1, $item->field);
+        self::assertObjectHasAttribute('field', $item);
+        self::assertEquals(1, $item->field);
     }
 
-    public function testInvalidSourceType()
+    public function testInvalidSourceType(): void
     {
         $this->expectException(\TypeError::class);
 

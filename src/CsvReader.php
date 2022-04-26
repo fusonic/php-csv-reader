@@ -7,15 +7,17 @@ declare(strict_types=1);
 
 namespace Fusonic\CsvReader;
 
+use Fusonic\CsvReader\Exceptions\CsvReaderException;
 use Fusonic\CsvReader\Mapping\MappingBuilder;
 use Fusonic\CsvReader\Mapping\MappingInfo;
+use Traversable;
 
 class CsvReader
 {
     private CsvReaderOptions $options;
 
     public function __construct(
-        private $file,
+        private mixed $file,
         ?CsvReaderOptions $options = null
     ) {
         $this->options = $options ?? new CsvReaderOptions();
@@ -28,11 +30,15 @@ class CsvReader
     /**
      * Iterates data from the configured CSV file and maps each row to an object of type $className.
      *
-     * @param string $className the class which data should be mapped to
+     * @param class-string $className the class which data should be mapped to
+     *
+     * @return Traversable<object>
      */
     public function readObjects(string $className): iterable
     {
+        /** @var resource $resource */
         $resource = is_resource($this->file) ? $this->file : fopen($this->file, 'r');
+        /** @var int $resourcePosition */
         $resourcePosition = ftell($resource);
 
         // Skip the BOM
@@ -44,6 +50,10 @@ class CsvReader
         $header = null;
         if ($this->options->hasHeaderRow) {
             $header = fgetcsv($resource, 0, $this->options->delimiter, $this->options->enclosure, $this->options->escape);
+
+            if (false === $header) {
+                throw new CsvReaderException('Cannot get line from file pointer and parse it for CSV fields.');
+            }
         }
 
         // Build mapping
@@ -62,9 +72,16 @@ class CsvReader
         }
     }
 
+    /**
+     * @param resource $resource
+     */
     private function skipBOM($resource): void
     {
         $position = ftell($resource);
+
+        if (false === $position) {
+            throw new CsvReaderException('Cannot read the current position of the file read/write pointer.');
+        }
 
         if (fread($resource, 3) !== chr(0xEF).chr(0xBB).chr(0xBF)) {
             fseek($resource, $position);

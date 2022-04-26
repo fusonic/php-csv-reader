@@ -1,7 +1,7 @@
 {
     "name": "fusonic/csv-reader",
     "license": "MIT",
-    "version": "0.2.0",
+    "version": "0.2.1",
     "description": "Map data from CSV files to typed PHP models.",
     "type": "library",
     "authors": [
@@ -24,16 +24,21 @@
         "php": ">=8.0"
     },
     "require-dev": {
+        "ext-intl": "*",
         "phpunit/phpunit": "^9.5",
-        "phpstan/phpstan": "^0.12",
-        "friendsofphp/php-cs-fixer": "^2.18"
+        "phpstan/phpstan": "^1.5",
+        "friendsofphp/php-cs-fixer": "^3.8",
+        "phpstan/phpstan-phpunit": "^1.1",
+        "phpstan/phpstan-strict-rules": "^1.1"
     },
     "suggest": {
         "ext-intl": "Required to use IntlValueConverter for advanced value conversion."
     },
     "scripts": {
-        "phpstan": "vendor/bin/phpstan analyse src",
-        "phpcs-check": "vendor/bin/php-cs-fixer fix --config=.php_cs.dist -v --dry-run --diff --using-cache=yes",
-        "phpcs-fix": "vendor/bin/php-cs-fixer fix --config=.php_cs.dist -v --using-cache=yes"
+        "phpstan": "php -d memory_limit=2048M vendor/bin/phpstan analyse",
+        "phpcs-check": "vendor/bin/php-cs-fixer fix --config=.php-cs-fixer.dist.php -v --dry-run --diff --using-cache=yes",
+        "phpcs-fix": "vendor/bin/php-cs-fixer fix --config=.php-cs-fixer.dist.php -v --using-cache=yes",
+        "test": "vendor/bin/phpunit --testdox",
+        "test-coverage" : "vendor/bin/phpunit --coverage-text --coverage-cobertura=coverage/cobertura.xml --coverage-html=coverage/html"
     }
 }
