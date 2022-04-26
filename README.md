@@ -1,7 +1,7 @@
 # CSV Reader
 
-[![License](https://img.shields.io/packagist/l/fusonic/csv-reader?color=blue)](https://github.com/fusonic/csv-reader/blob/master/LICENSE)
-[![Latest Version](https://img.shields.io/github/tag/fusonic/csv-reader.svg?color=blue)](https://github.com/fusonic/csv-reader/releases)
+[![License](https://img.shields.io/packagist/l/fusonic/csv-reader?color=blue)](https://github.com/fusonic/php-csv-reader/blob/master/LICENSE)
+[![Latest Version](https://img.shields.io/github/tag/fusonic/php-csv-reader.svg?color=blue)](https://github.com/fusonic/php-csv-reader/releases)
 [![Total Downloads](https://img.shields.io/packagist/dt/fusonic/csv-reader.svg?color=blue)](https://packagist.org/packages/fusonic/csv-reader)
 ![php 8.0+](https://img.shields.io/badge/php-min%208.0-blue.svg)
 
