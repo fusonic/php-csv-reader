@@ -7,19 +7,17 @@ declare(strict_types=1);
 
 namespace Fusonic\CsvReader\Exceptions;
 
-use Throwable;
-
 final class ValueConversionException extends CsvReaderException
 {
     public const TYPE_NOT_SUPPORTED = 1;
     public const CONVERSION_FAILED = 2;
 
-    public function __construct(string $message, int $code = 0, Throwable $previous = null)
+    public function __construct(string $message, int $code = 0, \Throwable $previous = null)
     {
         parent::__construct($message, $code, $previous);
     }
 
-    public static function fromValueAndTargetType(string $value, string $targetType, ?Throwable $innerException = null): ValueConversionException
+    public static function fromValueAndTargetType(string $value, string $targetType, ?\Throwable $innerException = null): ValueConversionException
     {
         return new ValueConversionException(sprintf('Could not parse "%s" as "%s".', $value, $targetType), ValueConversionException::CONVERSION_FAILED, $innerException);
     }

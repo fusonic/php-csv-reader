@@ -7,11 +7,7 @@ declare(strict_types=1);
 
 namespace Fusonic\CsvReader\Conversion;
 
-use DateTime;
-use DateTimeImmutable;
-use DateTimeInterface;
 use Fusonic\CsvReader\Exceptions\ValueConversionException;
-use Throwable;
 
 class ValueConverter implements ValueConverterInterface
 {
@@ -39,18 +35,18 @@ class ValueConverter implements ValueConverterInterface
             return filter_var($value, FILTER_VALIDATE_BOOL);
         }
 
-        if (DateTimeInterface::class === $targetType || DateTimeImmutable::class === $targetType) {
+        if (\DateTimeInterface::class === $targetType || \DateTimeImmutable::class === $targetType) {
             try {
-                return new DateTimeImmutable($value);
-            } catch (Throwable $ex) {
+                return new \DateTimeImmutable($value);
+            } catch (\Throwable $ex) {
                 throw ValueConversionException::fromValueAndTargetType($value, $targetType, $ex);
             }
         }
 
-        if (DateTime::class === $targetType) {
+        if (\DateTime::class === $targetType) {
             try {
-                return new DateTime($value);
-            } catch (Throwable $ex) {
+                return new \DateTime($value);
+            } catch (\Throwable $ex) {
                 throw ValueConversionException::fromValueAndTargetType($value, $targetType, $ex);
             }
         }
@@ -70,9 +66,9 @@ class ValueConverter implements ValueConverterInterface
             'float',
             'string',
             'bool',
-            DateTime::class,
-            DateTimeImmutable::class,
-            DateTimeInterface::class,
+            \DateTime::class,
+            \DateTimeImmutable::class,
+            \DateTimeInterface::class,
         ], true);
     }
 }

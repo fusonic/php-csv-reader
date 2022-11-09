@@ -11,8 +11,6 @@ use Fusonic\CsvReader\Attributes\IndexMapping;
 use Fusonic\CsvReader\Attributes\MappingAttribute;
 use Fusonic\CsvReader\Attributes\TitleMapping;
 use Fusonic\CsvReader\Exceptions\MappingException;
-use ReflectionMethod;
-use ReflectionProperty;
 
 /**
  * @internal
@@ -53,7 +51,7 @@ final class MappingBuilder
     /**
      * @param array<int, string>|null $header
      */
-    private function getColumnIndexFromAttribute(ReflectionProperty|ReflectionMethod $target, ?array $header): ?int
+    private function getColumnIndexFromAttribute(\ReflectionProperty|\ReflectionMethod $target, ?array $header): ?int
     {
         // First find mapping attribute for this target
 

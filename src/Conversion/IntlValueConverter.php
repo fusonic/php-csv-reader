@@ -7,18 +7,16 @@ declare(strict_types=1);
 
 namespace Fusonic\CsvReader\Conversion;
 
-use Exception;
 use Fusonic\CsvReader\Exceptions\ValueConversionException;
-use NumberFormatter;
 
 class IntlValueConverter extends ValueConverter
 {
-    private NumberFormatter $numberFormatter;
+    private \NumberFormatter $numberFormatter;
 
     public function __construct(
         string $locale,
     ) {
-        $this->numberFormatter = new NumberFormatter($locale, NumberFormatter::TYPE_DEFAULT);
+        $this->numberFormatter = new \NumberFormatter($locale, \NumberFormatter::TYPE_DEFAULT);
     }
 
     public function convert(string $value, string $targetType): mixed
@@ -43,8 +41,8 @@ class IntlValueConverter extends ValueConverter
     private function convertInt(string $value): int
     {
         try {
-            return (int) $this->numberFormatter->parse($value, NumberFormatter::TYPE_INT32);
-        } catch (Exception $ex) {
+            return (int) $this->numberFormatter->parse($value, \NumberFormatter::TYPE_INT32);
+        } catch (\Exception $ex) {
             throw ValueConversionException::fromValueAndTargetType($value, 'int', $ex);
         }
     }
@@ -52,8 +50,8 @@ class IntlValueConverter extends ValueConverter
     private function convertFloat(string $value): float
     {
         try {
-            return (float) $this->numberFormatter->parse($value, NumberFormatter::TYPE_DOUBLE);
-        } catch (Exception $ex) {
+            return (float) $this->numberFormatter->parse($value, \NumberFormatter::TYPE_DOUBLE);
+        } catch (\Exception $ex) {
             throw ValueConversionException::fromValueAndTargetType($value, 'float', $ex);
         }
     }

@@ -10,7 +10,6 @@ namespace Fusonic\CsvReader;
 use Fusonic\CsvReader\Exceptions\CsvReaderException;
 use Fusonic\CsvReader\Mapping\MappingBuilder;
 use Fusonic\CsvReader\Mapping\MappingInfo;
-use Traversable;
 
 class CsvReader
 {
@@ -32,7 +31,7 @@ class CsvReader
      *
      * @param class-string $className the class which data should be mapped to
      *
-     * @return Traversable<object>
+     * @return \Traversable<object>
      */
     public function readObjects(string $className): iterable
     {
