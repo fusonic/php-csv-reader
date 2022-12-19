@@ -57,11 +57,11 @@ final class MappingBuilder
 
         $attributes = $target->getAttributes(MappingAttribute::class, \ReflectionAttribute::IS_INSTANCEOF);
 
-        if (0 === count($attributes)) {
+        if (0 === \count($attributes)) {
             return null;
         }
 
-        if (count($attributes) > 1) {
+        if (\count($attributes) > 1) {
             throw new MappingException(sprintf('Multiple mapping attributes found on %s::%s.', $target->getDeclaringClass()->getName(), $target->getName()), MappingException::MULTIPLE_MAPPING_ATTRIBUTES_FOUND);
         }
 

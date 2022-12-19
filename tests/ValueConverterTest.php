@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 // Copyright (c) Fusonic GmbH. All rights reserved.
 // Licensed under the MIT License. See LICENSE file in the project root for license information.
 
@@ -34,7 +36,7 @@ class ValueConverterTest extends TestCase
         $result = $this->vc->convert($input, 'int');
 
         self::assertTrue(is_int($result));
-        self::assertEquals($expected, $result);
+        self::assertSame($expected, $result);
     }
 
     /**
@@ -56,7 +58,7 @@ class ValueConverterTest extends TestCase
     {
         $result = $this->vc->convert($input, '?int');
 
-        self::assertEquals($expected, $result);
+        self::assertSame($expected, $result);
     }
 
     public function floatProvider(): array
@@ -76,7 +78,7 @@ class ValueConverterTest extends TestCase
         $result = $this->vc->convert($input, 'float');
 
         self::assertTrue(is_float($result));
-        self::assertEquals($expected, $result);
+        self::assertSame($expected, $result);
     }
 
     /**
@@ -98,7 +100,7 @@ class ValueConverterTest extends TestCase
     {
         $result = $this->vc->convert($input, '?float');
 
-        self::assertEquals($expected, $result);
+        self::assertSame($expected, $result);
     }
 
     /**
@@ -123,7 +125,7 @@ class ValueConverterTest extends TestCase
         $result = $this->vc->convert($input, 'string');
 
         self::assertTrue(is_string($result));
-        self::assertEquals($expected, $result);
+        self::assertSame($expected, $result);
     }
 
     public function nullableStringProvider(): array
@@ -144,7 +146,7 @@ class ValueConverterTest extends TestCase
     {
         $result = $this->vc->convert($input, '?string');
 
-        self::assertEquals($expected, $result);
+        self::assertSame($expected, $result);
     }
 
     /**
@@ -175,7 +177,7 @@ class ValueConverterTest extends TestCase
         $result = $this->vc->convert($input, 'bool');
 
         self::assertTrue(is_bool($result));
-        self::assertEquals($expected, $result);
+        self::assertSame($expected, $result);
     }
 
     /**
@@ -205,7 +207,7 @@ class ValueConverterTest extends TestCase
     {
         $result = $this->vc->convert($input, '?bool');
 
-        self::assertEquals($expected, $result);
+        self::assertSame($expected, $result);
     }
 
     /**
@@ -231,7 +233,7 @@ class ValueConverterTest extends TestCase
         $result = $this->vc->convert($input, DateTime::class);
 
         self::assertTrue($result instanceof DateTime);
-        self::assertEquals($expected, $result->format('Y-m-d H:i:s'));
+        self::assertSame($expected, $result->format('Y-m-d H:i:s'));
     }
 
     /**
@@ -242,7 +244,7 @@ class ValueConverterTest extends TestCase
         $result = $this->vc->convert($input, '?'.DateTime::class);
 
         self::assertTrue($result instanceof DateTime);
-        self::assertEquals($expected, $result->format('Y-m-d H:i:s'));
+        self::assertSame($expected, $result->format('Y-m-d H:i:s'));
     }
 
     /**
@@ -253,7 +255,7 @@ class ValueConverterTest extends TestCase
         $result = $this->vc->convert($input, DateTimeInterface::class);
 
         self::assertTrue($result instanceof DateTimeInterface);
-        self::assertEquals($expected, $result->format('Y-m-d H:i:s'));
+        self::assertSame($expected, $result->format('Y-m-d H:i:s'));
     }
 
     /**
@@ -264,7 +266,7 @@ class ValueConverterTest extends TestCase
         $result = $this->vc->convert($input, '?'.DateTimeInterface::class);
 
         self::assertTrue($result instanceof DateTimeInterface);
-        self::assertEquals($expected, $result->format('Y-m-d H:i:s'));
+        self::assertSame($expected, $result->format('Y-m-d H:i:s'));
     }
 
     /**
@@ -275,7 +277,7 @@ class ValueConverterTest extends TestCase
         $result = $this->vc->convert($input, DateTimeImmutable::class);
 
         self::assertTrue($result instanceof DateTimeImmutable);
-        self::assertEquals($expected, $result->format('Y-m-d H:i:s'));
+        self::assertSame($expected, $result->format('Y-m-d H:i:s'));
     }
 
     /**
@@ -286,7 +288,7 @@ class ValueConverterTest extends TestCase
         $result = $this->vc->convert($input, '?'.DateTimeImmutable::class);
 
         self::assertTrue($result instanceof DateTimeImmutable);
-        self::assertEquals($expected, $result->format('Y-m-d H:i:s'));
+        self::assertSame($expected, $result->format('Y-m-d H:i:s'));
     }
 
     /**

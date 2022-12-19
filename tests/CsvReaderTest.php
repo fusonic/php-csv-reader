@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 // Copyright (c) Fusonic GmbH. All rights reserved.
 // Licensed under the MIT License. See LICENSE file in the project root for license information.
 
@@ -23,8 +25,8 @@ class CsvReaderTest extends TestCase
 
         self::assertObjectHasAttribute('field', $item);
         self::assertObjectHasAttribute('methodBackingField', $item);
-        self::assertEquals(1, $item->field);
-        self::assertEquals(1.11, $item->methodBackingField);
+        self::assertSame(1, $item->field);
+        self::assertSame(1.11, $item->methodBackingField);
     }
 
     public function testReadWithHeadersAndTitleMappingAsResource(): void
@@ -35,8 +37,8 @@ class CsvReaderTest extends TestCase
 
         self::assertObjectHasAttribute('field', $item);
         self::assertObjectHasAttribute('methodBackingField', $item);
-        self::assertEquals(1, $item->field);
-        self::assertEquals(1.11, $item->methodBackingField);
+        self::assertSame(1, $item->field);
+        self::assertSame(1.11, $item->methodBackingField);
     }
 
     public function testResourceIsRewinded(): void
@@ -50,8 +52,8 @@ class CsvReaderTest extends TestCase
 
         self::assertObjectHasAttribute('field', $item);
         self::assertObjectHasAttribute('methodBackingField', $item);
-        self::assertEquals(1, $item->field);
-        self::assertEquals(1.11, $item->methodBackingField);
+        self::assertSame(1, $item->field);
+        self::assertSame(1.11, $item->methodBackingField);
     }
 
     public function testReadWithHeadersAndIndexMapping(): void
@@ -62,8 +64,8 @@ class CsvReaderTest extends TestCase
 
         self::assertObjectHasAttribute('field', $item);
         self::assertObjectHasAttribute('methodBackingField', $item);
-        self::assertEquals(1, $item->field);
-        self::assertEquals(1.11, $item->methodBackingField);
+        self::assertSame(1, $item->field);
+        self::assertSame(1.11, $item->methodBackingField);
     }
 
     public function testReadWithoutHeadersAndIndexMapping(): void
@@ -77,8 +79,8 @@ class CsvReaderTest extends TestCase
 
         self::assertObjectHasAttribute('field', $item);
         self::assertObjectHasAttribute('methodBackingField', $item);
-        self::assertEquals(1, $item->field);
-        self::assertEquals(1.11, $item->methodBackingField);
+        self::assertSame(1, $item->field);
+        self::assertSame(1.11, $item->methodBackingField);
     }
 
     public function testCsvSettingsChangedDelimiterAndEnclosure(): void
@@ -96,8 +98,8 @@ class CsvReaderTest extends TestCase
         foreach ($reader->readObjects($class::class) as $item) {
             self::assertObjectHasAttribute('field1', $item);
             self::assertObjectHasAttribute('field2', $item);
-            self::assertEquals(1, $item->field1);
-            self::assertEquals(';', $item->field2);
+            self::assertSame(1, $item->field1);
+            self::assertSame(';', $item->field2);
         }
     }
 
@@ -110,7 +112,7 @@ class CsvReaderTest extends TestCase
         $item = iterator_to_array($reader->readObjects(WithHeadersModel::class))[0];
 
         self::assertObjectHasAttribute('field', $item);
-        self::assertEquals(1, $item->field);
+        self::assertSame(1, $item->field);
     }
 
     public function testBomRemovaldontChangeIfNotExistent(): void
@@ -122,7 +124,7 @@ class CsvReaderTest extends TestCase
         $item = iterator_to_array($reader->readObjects(WithHeadersModel::class))[0];
 
         self::assertObjectHasAttribute('field', $item);
-        self::assertEquals(1, $item->field);
+        self::assertSame(1, $item->field);
     }
 
     public function testBomRemovalfailIfExistsAndNotAutoremoved(): void
@@ -137,7 +139,7 @@ class CsvReaderTest extends TestCase
         $item = iterator_to_array($reader->readObjects(WithHeadersModel::class))[0];
 
         self::assertObjectHasAttribute('field', $item);
-        self::assertEquals(1, $item->field);
+        self::assertSame(1, $item->field);
     }
 
     public function testInvalidSourceType(): void

@@ -1,7 +1,7 @@
 {
     "name": "fusonic/csv-reader",
     "license": "MIT",
-    "version": "0.3.1",
+    "version": "0.3.2",
     "description": "Map data from CSV files to typed PHP models.",
     "type": "library",
     "authors": [
@@ -27,7 +27,7 @@
         "ext-intl": "*",
         "phpunit/phpunit": "^9.5",
         "phpstan/phpstan": "^1.5",
-        "friendsofphp/php-cs-fixer": "^3.8",
+        "friendsofphp/php-cs-fixer": "^3.13",
         "phpstan/phpstan-phpunit": "^1.1",
         "phpstan/phpstan-strict-rules": "^1.1",
         "symplify/phpstan-rules": "^11.1"
@@ -37,8 +37,8 @@
     },
     "scripts": {
         "phpstan": "XDEBUG_MODE=off php -d memory_limit=2048M vendor/bin/phpstan analyse",
-        "phpcs-check": "XDEBUG_MODE=off vendor/bin/php-cs-fixer fix --config=.php-cs-fixer.dist.php -v --dry-run --diff --using-cache=yes",
-        "phpcs-fix": "XDEBUG_MODE=off vendor/bin/php-cs-fixer fix --config=.php-cs-fixer.dist.php -v --using-cache=yes",
+        "phpcs-check": "XDEBUG_MODE=off vendor/bin/php-cs-fixer fix --config=.php-cs-fixer.dist.php -v --dry-run --diff --using-cache=yes --allow-risky=yes",
+        "phpcs-fix": "XDEBUG_MODE=off vendor/bin/php-cs-fixer fix --config=.php-cs-fixer.dist.php -v --using-cache=yes --allow-risky=yes",
         "test": "XDEBUG_MODE=off vendor/bin/phpunit --testdox",
         "test-coverage" : "XDEBUG_MODE=off vendor/bin/phpunit --coverage-text --coverage-cobertura=coverage/cobertura.xml --coverage-html=coverage/html"
     }

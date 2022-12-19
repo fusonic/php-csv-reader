@@ -32,7 +32,7 @@ class ValueConverter implements ValueConverterInterface
         }
 
         if ('bool' === $targetType) {
-            return filter_var($value, FILTER_VALIDATE_BOOL);
+            return filter_var($value, \FILTER_VALIDATE_BOOL);
         }
 
         if (\DateTimeInterface::class === $targetType || \DateTimeImmutable::class === $targetType) {
@@ -56,12 +56,12 @@ class ValueConverter implements ValueConverterInterface
 
     protected function isNullValue(string $value, string $targetType): bool
     {
-        return str_starts_with($targetType, '?') && (0 === strlen($value) || 'null' === strtolower(trim($value)));
+        return str_starts_with($targetType, '?') && ('' === $value || 'null' === strtolower(trim($value)));
     }
 
     public function supports(string $targetType): bool
     {
-        return in_array($targetType, [
+        return \in_array($targetType, [
             'int',
             'float',
             'string',
