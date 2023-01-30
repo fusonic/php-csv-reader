@@ -13,9 +13,8 @@ class IntlValueConverter extends ValueConverter
 {
     private \NumberFormatter $numberFormatter;
 
-    public function __construct(
-        string $locale,
-    ) {
+    public function __construct(string $locale)
+    {
         $this->numberFormatter = new \NumberFormatter($locale, \NumberFormatter::TYPE_DEFAULT);
     }
 

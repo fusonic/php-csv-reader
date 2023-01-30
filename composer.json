@@ -1,7 +1,7 @@
 {
     "name": "fusonic/csv-reader",
     "license": "MIT",
-    "version": "0.3.2",
+    "version": "0.3.3",
     "description": "Map data from CSV files to typed PHP models.",
     "type": "library",
     "authors": [
@@ -29,7 +29,8 @@
         "phpstan/phpstan": "^1.5",
         "friendsofphp/php-cs-fixer": "^3.13",
         "phpstan/phpstan-phpunit": "^1.1",
-        "phpstan/phpstan-strict-rules": "^1.1"
+        "phpstan/phpstan-strict-rules": "^1.1",
+        "tomasvotruba/type-coverage": "^0.0.9"
     },
     "suggest": {
         "ext-intl": "Required to use IntlValueConverter for advanced value conversion."

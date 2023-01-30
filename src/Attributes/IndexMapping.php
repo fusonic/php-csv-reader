@@ -12,9 +12,8 @@ use Attribute;
 #[\Attribute(\Attribute::TARGET_METHOD | \Attribute::TARGET_PROPERTY)]
 final class IndexMapping extends MappingAttribute
 {
-    public function __construct(
-        private int $index
-    ) {
+    public function __construct(private int $index)
+    {
     }
 
     public function getIndex(): int

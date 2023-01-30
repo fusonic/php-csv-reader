@@ -15,14 +15,14 @@ class CsvReader
 {
     private CsvReaderOptions $options;
 
-    public function __construct(
-        private mixed $file,
-        ?CsvReaderOptions $options = null
-    ) {
+    public function __construct(private mixed $file, ?CsvReaderOptions $options = null)
+    {
         $this->options = $options ?? new CsvReaderOptions();
 
         if (!\is_string($file) && !\is_resource($file)) {
-            throw new \TypeError('Fusonic\\CsvReader\\CsvReader::__construct(): Argument #1 ($file) must be of type string or resource.');
+            throw new \TypeError(
+                'Fusonic\\CsvReader\\CsvReader::__construct(): Argument #1 ($file) must be of type string or resource.'
+            );
         }
     }
 
@@ -48,7 +48,13 @@ class CsvReader
         // Read header
         $header = null;
         if ($this->options->hasHeaderRow) {
-            $header = fgetcsv($resource, 0, $this->options->delimiter, $this->options->enclosure, $this->options->escape);
+            $header = fgetcsv(
+                $resource,
+                0,
+                $this->options->delimiter,
+                $this->options->enclosure,
+                $this->options->escape
+            );
 
             if (false === $header) {
                 throw new CsvReaderException('Cannot get line from file pointer and parse it for CSV fields.');
@@ -59,7 +65,13 @@ class CsvReader
         $mappingBuilder = new MappingBuilder();
         $mapping = $mappingBuilder->build($header, $className);
 
-        while (($row = fgetcsv($resource, 0, $this->options->delimiter, $this->options->enclosure, $this->options->escape)) !== false) {
+        while (($row = fgetcsv(
+            $resource,
+            0,
+            $this->options->delimiter,
+            $this->options->enclosure,
+            $this->options->escape
+        )) !== false) {
             yield $this->map($row, $className, $mapping);
         }
 
@@ -93,7 +105,10 @@ class CsvReader
 
         foreach ($mappings as $mapping) {
             /* @var MappingInfo $mapping */
-            $mapping->setValue($object, $this->options->valueConverter->convert($row[$mapping->getIndex()], $mapping->getType()));
+            $mapping->setValue(
+                $object,
+                $this->options->valueConverter->convert($row[$mapping->getIndex()], $mapping->getType())
+            );
         }
 
         return $object;

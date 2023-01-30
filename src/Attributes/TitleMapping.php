@@ -12,9 +12,8 @@ use Attribute;
 #[\Attribute(\Attribute::TARGET_METHOD | \Attribute::TARGET_PROPERTY)]
 final class TitleMapping extends MappingAttribute
 {
-    public function __construct(
-        private string $title
-    ) {
+    public function __construct(private string $title)
+    {
     }
 
     public function getTitle(): string
