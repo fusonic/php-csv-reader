@@ -29,9 +29,11 @@ class CsvReader
     /**
      * Iterates data from the configured CSV file and maps each row to an object of type $className.
      *
-     * @param class-string $className the class which data should be mapped to
+     * @template T of object
      *
-     * @return \Traversable<object>
+     * @param class-string<T> $className the class which data should be mapped to
+     *
+     * @return \Traversable<T>
      */
     public function readObjects(string $className): iterable
     {
@@ -99,6 +101,13 @@ class CsvReader
         }
     }
 
+    /**
+     * @template T of object
+     *
+     * @param class-string<T> $className
+     *
+     * @return T
+     */
     private function map(array $row, string $className, array $mappings): object
     {
         $object = new $className();

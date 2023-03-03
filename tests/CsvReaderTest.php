@@ -23,8 +23,6 @@ class CsvReaderTest extends TestCase
 
         $item = iterator_to_array($reader->readObjects(WithHeadersModel::class))[0];
 
-        self::assertObjectHasAttribute('field', $item);
-        self::assertObjectHasAttribute('methodBackingField', $item);
         self::assertSame(1, $item->field);
         self::assertSame(1.11, $item->methodBackingField);
     }
@@ -35,8 +33,6 @@ class CsvReaderTest extends TestCase
 
         $item = iterator_to_array($reader->readObjects(WithHeadersModel::class))[0];
 
-        self::assertObjectHasAttribute('field', $item);
-        self::assertObjectHasAttribute('methodBackingField', $item);
         self::assertSame(1, $item->field);
         self::assertSame(1.11, $item->methodBackingField);
     }
@@ -50,8 +46,6 @@ class CsvReaderTest extends TestCase
         // Read once again
         $item = iterator_to_array($reader->readObjects(WithHeadersModel::class))[0];
 
-        self::assertObjectHasAttribute('field', $item);
-        self::assertObjectHasAttribute('methodBackingField', $item);
         self::assertSame(1, $item->field);
         self::assertSame(1.11, $item->methodBackingField);
     }
@@ -62,8 +56,6 @@ class CsvReaderTest extends TestCase
 
         $item = iterator_to_array($reader->readObjects(WithoutHeadersModel::class))[0];
 
-        self::assertObjectHasAttribute('field', $item);
-        self::assertObjectHasAttribute('methodBackingField', $item);
         self::assertSame(1, $item->field);
         self::assertSame(1.11, $item->methodBackingField);
     }
@@ -77,8 +69,6 @@ class CsvReaderTest extends TestCase
 
         $item = iterator_to_array($reader->readObjects(WithoutHeadersModel::class))[0];
 
-        self::assertObjectHasAttribute('field', $item);
-        self::assertObjectHasAttribute('methodBackingField', $item);
         self::assertSame(1, $item->field);
         self::assertSame(1.11, $item->methodBackingField);
     }
@@ -96,8 +86,6 @@ class CsvReaderTest extends TestCase
         };
 
         foreach ($reader->readObjects($class::class) as $item) {
-            self::assertObjectHasAttribute('field1', $item);
-            self::assertObjectHasAttribute('field2', $item);
             self::assertSame(1, $item->field1);
             self::assertSame(';', $item->field2);
         }
@@ -111,7 +99,6 @@ class CsvReaderTest extends TestCase
         $reader = new CsvReader(__DIR__.'/data/with_headers_bom.csv', $options);
         $item = iterator_to_array($reader->readObjects(WithHeadersModel::class))[0];
 
-        self::assertObjectHasAttribute('field', $item);
         self::assertSame(1, $item->field);
     }
 
@@ -123,7 +110,6 @@ class CsvReaderTest extends TestCase
         $reader = new CsvReader(__DIR__.'/data/with_headers.csv', $options);
         $item = iterator_to_array($reader->readObjects(WithHeadersModel::class))[0];
 
-        self::assertObjectHasAttribute('field', $item);
         self::assertSame(1, $item->field);
     }
 
@@ -138,7 +124,6 @@ class CsvReaderTest extends TestCase
         $reader = new CsvReader(__DIR__.'/data/with_headers_bom.csv', $options);
         $item = iterator_to_array($reader->readObjects(WithHeadersModel::class))[0];
 
-        self::assertObjectHasAttribute('field', $item);
         self::assertSame(1, $item->field);
     }
 
