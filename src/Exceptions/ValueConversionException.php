@@ -12,7 +12,7 @@ final class ValueConversionException extends CsvReaderException
     public const TYPE_NOT_SUPPORTED = 1;
     public const CONVERSION_FAILED = 2;
 
-    public function __construct(string $message, int $code = 0, \Throwable $previous = null)
+    public function __construct(string $message, int $code = 0, ?\Throwable $previous = null)
     {
         parent::__construct($message, $code, $previous);
     }
