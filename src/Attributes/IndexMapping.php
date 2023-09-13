@@ -7,8 +7,6 @@ declare(strict_types=1);
 
 namespace Fusonic\CsvReader\Attributes;
 
-use Attribute;
-
 #[\Attribute(\Attribute::TARGET_METHOD | \Attribute::TARGET_PROPERTY)]
 final class IndexMapping extends MappingAttribute
 {
