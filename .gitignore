@@ -1,7 +1,11 @@
 /vendor
 /reports
-.phpunit.result.cache
 /var
 composer.lock
 /coverage
 .php-cs-fixer.cache
+
+###> phpunit/phpunit ###
+/phpunit.xml
+.phpunit.result.cache
+###< phpunit/phpunit ###

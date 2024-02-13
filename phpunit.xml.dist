@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.5/phpunit.xsd"
+         colors="true"
+         bootstrap="vendor/autoload.php"
+         displayDetailsOnTestsThatTriggerDeprecations="true"
+         displayDetailsOnTestsThatTriggerWarnings="true"
+         displayDetailsOnTestsThatTriggerErrors="true"
+         failOnWarning="true"
+         failOnRisky="true"
+         cacheDirectory=".phpunit.result.cache">
+
+    <php>
+        <ini name="error_reporting" value="-1"/>
+        <env name="APP_DEBUG" value="false" />
+    </php>
+
+    <source ignoreSuppressionOfDeprecations="true"
+    ignoreSuppressionOfPhpDeprecations="true"
+    ignoreSuppressionOfErrors="true"
+    ignoreSuppressionOfNotices="true"
+    ignoreSuppressionOfPhpNotices="true"
+    ignoreSuppressionOfWarnings="true"
+    ignoreSuppressionOfPhpWarnings="true">
+    <include>
+            <directory>./src/</directory>
+        </include>
+    </source>
+
+    <coverage/>
+
+    <testsuites>
+        <testsuite name="Fusonic CsvReader Test Suite">
+            <directory>./tests/</directory>
+        </testsuite>
+    </testsuites>
+</phpunit>
