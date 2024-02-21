@@ -1,7 +1,7 @@
 {
     "name": "fusonic/csv-reader",
     "license": "MIT",
-    "version": "0.4.0",
+    "version": "0.4.1",
     "description": "Map data from CSV files to typed PHP models.",
     "type": "library",
     "authors": [
@@ -20,17 +20,8 @@
             "Fusonic\\CsvReader\\Tests\\": "tests/"
         }
     },
-    "replace":  {
-        "symfony/polyfill-intl-grapheme": "*",
-        "symfony/polyfill-intl-normalizer": "*",
-        "symfony/polyfill-ctype": "*",
-        "symfony/polyfill-mbstring": "*"
-    },
     "require": {
-        "php": ">=8.1",
-        "ext-intl": "*",
-        "ext-ctype": "*",
-        "ext-mbstring": "*"
+        "php": ">=8.1"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^3.22",
