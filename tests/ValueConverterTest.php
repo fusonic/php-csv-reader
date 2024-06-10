@@ -24,6 +24,9 @@ class ValueConverterTest extends TestCase
         $this->vc = new ValueConverter();
     }
 
+    /**
+     * @return array<array<int|string>>
+     */
     public static function intProvider(): array
     {
         return [
@@ -43,7 +46,7 @@ class ValueConverterTest extends TestCase
     }
 
     /**
-     * @return array[]
+     * @return array<array<int|string|null>>
      */
     public static function nullableIntProvider(): array
     {
@@ -62,6 +65,9 @@ class ValueConverterTest extends TestCase
         self::assertSame($expected, $result);
     }
 
+    /**
+     * @return array<array<int|float|string>>
+     */
     public static function floatProvider(): array
     {
         return [
@@ -81,7 +87,7 @@ class ValueConverterTest extends TestCase
     }
 
     /**
-     * @return array[]
+     * @return array<array<int|float|string|null>>
      */
     public static function nullableFloatProvider(): array
     {
@@ -101,7 +107,7 @@ class ValueConverterTest extends TestCase
     }
 
     /**
-     * @return string[][]
+     * @return array<string[]>
      */
     public static function stringProvider(): array
     {
@@ -123,6 +129,9 @@ class ValueConverterTest extends TestCase
         self::assertSame($expected, $result);
     }
 
+    /**
+     * @return array<array<string|null>>
+     */
     public static function nullableStringProvider(): array
     {
         return [
@@ -143,7 +152,7 @@ class ValueConverterTest extends TestCase
     }
 
     /**
-     * @return array[]
+     * @return array<array<bool|string>>
      */
     public static function boolProvider(): array
     {
@@ -172,7 +181,7 @@ class ValueConverterTest extends TestCase
     }
 
     /**
-     * @return array[]
+     * @return array<array<bool|string|null>>
      */
     public static function nullableBoolProvider(): array
     {
@@ -200,7 +209,7 @@ class ValueConverterTest extends TestCase
     }
 
     /**
-     * @return string[][]
+     * @return array<string[]>
      */
     public static function dateTimeProvider(): array
     {
@@ -269,7 +278,7 @@ class ValueConverterTest extends TestCase
     }
 
     /**
-     * @return string[][]
+     * @return array<string[]>
      */
     public static function nullValuesProvider(): array
     {

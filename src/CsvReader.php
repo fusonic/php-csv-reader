@@ -106,7 +106,9 @@ class CsvReader
     /**
      * @template T of object
      *
+     * @param array<mixed>    $row
      * @param class-string<T> $className
+     * @param MappingInfo[]   $mappings
      *
      * @return T
      */

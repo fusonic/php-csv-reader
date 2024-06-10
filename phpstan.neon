@@ -3,15 +3,14 @@ parameters:
     paths:
         - src
         - tests
-    checkMissingIterableValueType: false
-
     type_coverage:
-        return_type: 100
-        param_type: 98 # because of resource
-        property_type: 100
-        print_suggestions: false
+        return: 100
+        param: 98 # because of resource
+        property: 100
 
 includes:
+    - vendor/phpstan/phpstan-deprecation-rules/rules.neon
     - vendor/phpstan/phpstan-phpunit/extension.neon
+    - vendor/phpstan/phpstan-phpunit/rules.neon
     - vendor/phpstan/phpstan-strict-rules/rules.neon
     - vendor/tomasvotruba/type-coverage/config/extension.neon

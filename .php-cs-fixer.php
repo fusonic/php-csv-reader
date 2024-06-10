@@ -1,12 +1,20 @@
 <?php
 
+/*
+ * Copyright (c) Fusonic GmbH. All rights reserved.
+ * Licensed under the MIT License. See LICENSE file in the project root for license information.
+ */
+
 declare(strict_types=1);
 
-$finder = PhpCsFixer\Finder::create()
+use PhpCsFixer\Runner\Parallel\ParallelConfigFactory;
+
+$finder = (new PhpCsFixer\Finder())
     ->in(__DIR__)
     ->exclude('example');
 
 return (new PhpCsFixer\Config())
+    ->setParallelConfig(ParallelConfigFactory::detect())
     ->setRules([
         '@PHP82Migration' => true,
         '@Symfony' => true,
@@ -19,7 +27,6 @@ return (new PhpCsFixer\Config())
         ],
         'no_useless_else' => true,
         'no_useless_return' => true,
-        'nullable_type_declaration_for_default_null_value' => true,
         'php_unit_strict' => true,
         'single_line_throw' => false,
         'strict_comparison' => true,

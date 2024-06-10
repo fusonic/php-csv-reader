@@ -22,6 +22,8 @@ final class MappingBuilder
     /**
      * @param array<int, string>|null $header
      * @param class-string            $className
+     *
+     * @return MappingInfo[]
      */
     public function build(?array $header, string $className): array
     {
