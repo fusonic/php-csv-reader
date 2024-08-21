@@ -82,7 +82,7 @@ class CsvReaderTest extends TestCase
         $options->enclosure = '#';
 
         $reader = new CsvReader(__DIR__.'/data/csv_settings.csv', $options);
-        $class = new class() {
+        $class = new class {
             #[TitleMapping('field1')] public int $field1;
             #[TitleMapping('field2')] public string $field2;
         };

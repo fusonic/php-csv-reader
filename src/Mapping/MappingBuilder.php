@@ -66,7 +66,7 @@ final class MappingBuilder
         }
 
         if (\count($attributes) > 1) {
-            throw new MappingException(sprintf('Multiple mapping attributes found on %s::%s.', $target->getDeclaringClass()->getName(), $target->getName()), MappingException::MULTIPLE_MAPPING_ATTRIBUTES_FOUND);
+            throw new MappingException(\sprintf('Multiple mapping attributes found on %s::%s.', $target->getDeclaringClass()->getName(), $target->getName()), MappingException::MULTIPLE_MAPPING_ATTRIBUTES_FOUND);
         }
 
         $attribute = $attributes[0]->newInstance();
@@ -83,12 +83,12 @@ final class MappingBuilder
             $index = array_search($attribute->getTitle(), $header, true);
 
             if (false === $index) {
-                throw new MappingException(sprintf('Column with title "%s" not found in CSV.', $attribute->getTitle()), MappingException::COLUMN_NOT_FOUND);
+                throw new MappingException(\sprintf('Column with title "%s" not found in CSV.', $attribute->getTitle()), MappingException::COLUMN_NOT_FOUND);
             }
 
             return $index;
         }
 
-        throw new MappingException(sprintf('Mapping attribute of type "%s" not supported.', $attribute::class), MappingException::UNSUPPORTED_MAPPING_ATTRIBUTE);
+        throw new MappingException(\sprintf('Mapping attribute of type "%s" not supported.', $attribute::class), MappingException::UNSUPPORTED_MAPPING_ATTRIBUTE);
     }
 }

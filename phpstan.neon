@@ -7,6 +7,7 @@ parameters:
         return: 100
         param: 98 # because of resource
         property: 100
+        constant: 0 # FIXME change to 100 once everything requires at least PHP 8.3
 
 includes:
     - vendor/phpstan/phpstan-deprecation-rules/rules.neon

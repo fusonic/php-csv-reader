@@ -21,6 +21,6 @@ final class ValueConversionException extends CsvReaderException
 
     public static function fromValueAndTargetType(string $value, string $targetType, ?\Throwable $innerException = null): self
     {
-        return new self(sprintf('Could not parse "%s" as "%s".', $value, $targetType), self::CONVERSION_FAILED, $innerException);
+        return new self(\sprintf('Could not parse "%s" as "%s".', $value, $targetType), self::CONVERSION_FAILED, $innerException);
     }
 }

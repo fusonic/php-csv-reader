@@ -53,7 +53,7 @@ class ValueConverter implements ValueConverterInterface
             }
         }
 
-        throw new ValueConversionException(sprintf('"%s" is not a supported type.', $targetType), ValueConversionException::TYPE_NOT_SUPPORTED);
+        throw new ValueConversionException(\sprintf('"%s" is not a supported type.', $targetType), ValueConversionException::TYPE_NOT_SUPPORTED);
     }
 
     protected function isNullValue(string $value, string $targetType): bool
