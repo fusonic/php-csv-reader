@@ -16,7 +16,7 @@ abstract class MappingInfo
 {
     protected function __construct(
         private string $targetType,
-        private int $sourceIndex
+        private int $sourceIndex,
     ) {
     }
 

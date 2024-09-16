@@ -17,7 +17,7 @@ final class MethodMappingInfo extends MappingInfo
     public function __construct(
         string $targetType,
         private string $methodName,
-        int $sourceIndex
+        int $sourceIndex,
     ) {
         parent::__construct($targetType, $sourceIndex);
     }

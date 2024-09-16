@@ -1,7 +1,7 @@
 {
     "name": "fusonic/csv-reader",
     "license": "MIT",
-    "version": "0.5.0",
+    "version": "0.5.1",
     "description": "Map data from CSV files to typed PHP models.",
     "type": "library",
     "authors": [
