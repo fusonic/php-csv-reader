@@ -7,7 +7,7 @@
     "authors": [
         {
             "name": "Fusonic GmbH",
-            "email": "office@fusonic.net"
+            "email": "php@fusonic.net"
         }
     ],
     "autoload": {
