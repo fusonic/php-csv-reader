@@ -15,8 +15,8 @@ namespace Fusonic\CsvReader\Mapping;
 abstract class MappingInfo
 {
     protected function __construct(
-        private string $targetType,
-        private int $sourceIndex,
+        private readonly string $targetType,
+        private readonly int $sourceIndex,
     ) {
     }
 

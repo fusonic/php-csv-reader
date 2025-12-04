@@ -17,7 +17,7 @@ use Fusonic\CsvReader\Tests\data\WithHeadersModel;
 use Fusonic\CsvReader\Tests\data\WithoutHeadersModel;
 use PHPUnit\Framework\TestCase;
 
-class CsvReaderTest extends TestCase
+final class CsvReaderTest extends TestCase
 {
     public function testReadWithHeadersAndTitleMapping(): void
     {

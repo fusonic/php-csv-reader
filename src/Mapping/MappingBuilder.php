@@ -20,8 +20,8 @@ use Fusonic\CsvReader\Exceptions\MappingException;
 final class MappingBuilder
 {
     /**
-     * @param array<int, string>|null $header
-     * @param class-string            $className
+     * @param array<int, string|null>|null $header
+     * @param class-string                 $className
      *
      * @return MappingInfo[]
      */
@@ -53,7 +53,7 @@ final class MappingBuilder
     }
 
     /**
-     * @param array<int, string>|null $header
+     * @param array<int, string|null>|null $header
      */
     private function getColumnIndexFromAttribute(\ReflectionProperty|\ReflectionMethod $target, ?array $header): ?int
     {

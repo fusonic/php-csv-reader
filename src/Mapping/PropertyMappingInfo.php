@@ -16,7 +16,7 @@ final class PropertyMappingInfo extends MappingInfo
 {
     public function __construct(
         string $targetType,
-        private string $propertyName,
+        private readonly string $propertyName,
         int $sourceIndex,
     ) {
         parent::__construct($targetType, $sourceIndex);
@@ -29,7 +29,7 @@ final class PropertyMappingInfo extends MappingInfo
 
     public function setValue(object $object, mixed $value): void
     {
-        // @phpstan-ignore-next-line
+        // @phpstan-ignore property.dynamicName
         $object->{$this->propertyName} = $value;
     }
 }

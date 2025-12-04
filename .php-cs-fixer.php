@@ -16,7 +16,7 @@ $finder = (new PhpCsFixer\Finder())
 return (new PhpCsFixer\Config())
     ->setParallelConfig(ParallelConfigFactory::detect())
     ->setRules([
-        '@PHP82Migration' => true,
+        '@PHP8x2Migration' => true,
         '@Symfony' => true,
         '@Symfony:risky' => true,
         'declare_strict_types' => true,
@@ -31,6 +31,34 @@ return (new PhpCsFixer\Config())
         'single_line_throw' => false,
         'strict_comparison' => true,
         'strict_param' => true,
+        'phpdoc_line_span' => true,
+        'blank_line_before_statement' => [
+            'statements' => [
+                'break',
+                'case',
+                'continue',
+                'declare',
+                'default',
+                'do',
+                'exit',
+                'for',
+                'foreach',
+                'goto',
+                'if',
+                'include',
+                'include_once',
+                'phpdoc',
+                'require',
+                'require_once',
+                'return',
+                'switch',
+                'throw',
+                'try',
+                'while',
+                'yield',
+                'yield_from',
+            ],
+        ],
     ])
     ->setFinder($finder)
     ->setRiskyAllowed(true);

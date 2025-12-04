@@ -19,6 +19,16 @@ class CsvReader
 
     public function __construct(private mixed $file, ?CsvReaderOptions $options = null)
     {
+        if (2 === \func_num_args() && null === $options) {
+            trigger_deprecation(
+                'fusonic/csv-reader',
+                '0.5.2',
+                'Passing null as the $options parameter to "%s()" is deprecated and will not be supported in the next major version. Pass a "%s" instance instead.',
+                __METHOD__,
+                CsvReaderOptions::class
+            );
+        }
+
         $this->options = $options ?? new CsvReaderOptions();
 
         if (!\is_string($file) && !\is_resource($file)) {
@@ -41,6 +51,7 @@ class CsvReader
     {
         /** @var resource $resource */
         $resource = \is_resource($this->file) ? $this->file : fopen($this->file, 'r');
+
         /** @var int $resourcePosition */
         $resourcePosition = ftell($resource);
 
@@ -51,13 +62,14 @@ class CsvReader
 
         // Read header
         $header = null;
+
         if ($this->options->hasHeaderRow) {
             $header = fgetcsv(
-                $resource,
-                0,
-                $this->options->delimiter,
-                $this->options->enclosure,
-                $this->options->escape
+                stream: $resource,
+                length: 0,
+                separator: $this->options->delimiter,
+                enclosure: $this->options->enclosure,
+                escape: $this->options->escape
             );
 
             if (false === $header) {

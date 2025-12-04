@@ -13,7 +13,7 @@ use Fusonic\CsvReader\Conversion\ValueConverter;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
-class ValueConverterTest extends TestCase
+final class ValueConverterTest extends TestCase
 {
     private ValueConverter $vc;
 
@@ -25,15 +25,15 @@ class ValueConverterTest extends TestCase
     }
 
     /**
-     * @return array<array<int|string>>
+     * @return \Iterator<array<int|string>>
      */
-    public static function intProvider(): array
+    public static function intProvider(): \Iterator
     {
-        return [
-            [1337, '1337'],
-            [1337, '1337.37'],
-            [0, ''],
-        ];
+        yield [1337, '1337'];
+
+        yield [1337, '1337.37'];
+
+        yield [0, ''];
     }
 
     #[DataProvider('intProvider')]
@@ -46,15 +46,15 @@ class ValueConverterTest extends TestCase
     }
 
     /**
-     * @return array<array<int|string|null>>
+     * @return \Iterator<array<int|string|null>>
      */
-    public static function nullableIntProvider(): array
+    public static function nullableIntProvider(): \Iterator
     {
-        return [
-            [1337, '1337'],
-            [1337, '1337.37'],
-            [null, ''],
-        ];
+        yield [1337, '1337'];
+
+        yield [1337, '1337.37'];
+
+        yield [null, ''];
     }
 
     #[DataProvider('nullableIntProvider')]
@@ -66,15 +66,15 @@ class ValueConverterTest extends TestCase
     }
 
     /**
-     * @return array<array<int|float|string>>
+     * @return \Iterator<array<float|int|string>>
      */
-    public static function floatProvider(): array
+    public static function floatProvider(): \Iterator
     {
-        return [
-            [1337, '1337'],
-            [1337.37, '1337.37'],
-            [0, ''],
-        ];
+        yield [1337, '1337'];
+
+        yield [1337.37, '1337.37'];
+
+        yield [0, ''];
     }
 
     #[DataProvider('floatProvider')]
@@ -87,15 +87,15 @@ class ValueConverterTest extends TestCase
     }
 
     /**
-     * @return array<array<int|float|string|null>>
+     * @return \Iterator<array<float|int|string|null>>
      */
-    public static function nullableFloatProvider(): array
+    public static function nullableFloatProvider(): \Iterator
     {
-        return [
-            [1337, '1337'],
-            [1337.37, '1337.37'],
-            [null, ''],
-        ];
+        yield [1337, '1337'];
+
+        yield [1337.37, '1337.37'];
+
+        yield [null, ''];
     }
 
     #[DataProvider('nullableFloatProvider')]
@@ -107,17 +107,19 @@ class ValueConverterTest extends TestCase
     }
 
     /**
-     * @return array<string[]>
+     * @return \Iterator<array<string>>
      */
-    public static function stringProvider(): array
+    public static function stringProvider(): \Iterator
     {
-        return [
-            ['1337', '1337'],
-            ['1337.37', '1337.37'],
-            ['', ''],
-            ['Special characters #´`+*~!"§$%&/()=?', 'Special characters #´`+*~!"§$%&/()=?'],
-            ['Multi'."\n".'Line', 'Multi'."\n".'Line'],
-        ];
+        yield ['1337', '1337'];
+
+        yield ['1337.37', '1337.37'];
+
+        yield ['', ''];
+
+        yield ['Special characters #´`+*~!"§$%&/()=?', 'Special characters #´`+*~!"§$%&/()=?'];
+
+        yield ['Multi'."\n".'Line', 'Multi'."\n".'Line'];
     }
 
     #[DataProvider('stringProvider')]
@@ -130,17 +132,19 @@ class ValueConverterTest extends TestCase
     }
 
     /**
-     * @return array<array<string|null>>
+     * @return \Iterator<array<string|null>>
      */
-    public static function nullableStringProvider(): array
+    public static function nullableStringProvider(): \Iterator
     {
-        return [
-            ['1337', '1337'],
-            ['1337.37', '1337.37'],
-            [null, ''],
-            ['Special characters #´`+*~!"§$%&/()=?', 'Special characters #´`+*~!"§$%&/()=?'],
-            ['Multi'."\n".'Line', 'Multi'."\n".'Line'],
-        ];
+        yield ['1337', '1337'];
+
+        yield ['1337.37', '1337.37'];
+
+        yield [null, ''];
+
+        yield ['Special characters #´`+*~!"§$%&/()=?', 'Special characters #´`+*~!"§$%&/()=?'];
+
+        yield ['Multi'."\n".'Line', 'Multi'."\n".'Line'];
     }
 
     #[DataProvider('nullableStringProvider')]
@@ -152,23 +156,31 @@ class ValueConverterTest extends TestCase
     }
 
     /**
-     * @return array<array<bool|string>>
+     * @return \Iterator<array<bool|string>>
      */
-    public static function boolProvider(): array
+    public static function boolProvider(): \Iterator
     {
-        return [
-            [true, '1'],
-            [true, 'true'],
-            [true, 'True'],
-            [true, 'on'],
-            [true, 'On'],
-            [false, '0'],
-            [false, 'false'],
-            [false, 'False'],
-            [false, 'off'],
-            [false, 'Off'],
-            [false, ''],
-        ];
+        yield [true, '1'];
+
+        yield [true, 'true'];
+
+        yield [true, 'True'];
+
+        yield [true, 'on'];
+
+        yield [true, 'On'];
+
+        yield [false, '0'];
+
+        yield [false, 'false'];
+
+        yield [false, 'False'];
+
+        yield [false, 'off'];
+
+        yield [false, 'Off'];
+
+        yield [false, ''];
     }
 
     #[DataProvider('boolProvider')]
@@ -181,23 +193,31 @@ class ValueConverterTest extends TestCase
     }
 
     /**
-     * @return array<array<bool|string|null>>
+     * @return \Iterator<array<bool|string|null>>
      */
-    public static function nullableBoolProvider(): array
+    public static function nullableBoolProvider(): \Iterator
     {
-        return [
-            [true, '1'],
-            [true, 'true'],
-            [true, 'True'],
-            [true, 'on'],
-            [true, 'On'],
-            [false, '0'],
-            [false, 'false'],
-            [false, 'False'],
-            [false, 'off'],
-            [false, 'Off'],
-            [null, ''],
-        ];
+        yield [true, '1'];
+
+        yield [true, 'true'];
+
+        yield [true, 'True'];
+
+        yield [true, 'on'];
+
+        yield [true, 'On'];
+
+        yield [false, '0'];
+
+        yield [false, 'false'];
+
+        yield [false, 'False'];
+
+        yield [false, 'off'];
+
+        yield [false, 'Off'];
+
+        yield [null, ''];
     }
 
     #[DataProvider('nullableBoolProvider')]
@@ -209,18 +229,18 @@ class ValueConverterTest extends TestCase
     }
 
     /**
-     * @return array<string[]>
+     * @return \Iterator<array<string>>
      */
-    public static function dateTimeProvider(): array
+    public static function dateTimeProvider(): \Iterator
     {
-        return [
-            ['2020-02-04 00:00:00', '2020-02-04'],
-            ['2020-02-04 13:37:37', '2020-02-04 13:37:37'],
+        yield ['2020-02-04 00:00:00', '2020-02-04'];
 
-            // German date formats
-            ['2020-02-04 00:00:00', '04.02.2020'],
-            ['2020-02-04 13:37:37', '04.02.2020 13:37:37'],
-        ];
+        yield ['2020-02-04 13:37:37', '2020-02-04 13:37:37'];
+
+        // German date formats
+        yield ['2020-02-04 00:00:00', '04.02.2020'];
+
+        yield ['2020-02-04 13:37:37', '04.02.2020 13:37:37'];
     }
 
     #[DataProvider('dateTimeProvider')]
@@ -228,7 +248,7 @@ class ValueConverterTest extends TestCase
     {
         $result = $this->vc->convert($input, \DateTime::class);
 
-        self::assertTrue($result instanceof \DateTime);
+        self::assertInstanceOf(\DateTime::class, $result);
         self::assertSame($expected, $result->format('Y-m-d H:i:s'));
     }
 
@@ -237,7 +257,7 @@ class ValueConverterTest extends TestCase
     {
         $result = $this->vc->convert($input, '?'.\DateTime::class);
 
-        self::assertTrue($result instanceof \DateTime);
+        self::assertInstanceOf(\DateTime::class, $result);
         self::assertSame($expected, $result->format('Y-m-d H:i:s'));
     }
 
@@ -246,7 +266,7 @@ class ValueConverterTest extends TestCase
     {
         $result = $this->vc->convert($input, \DateTimeInterface::class);
 
-        self::assertTrue($result instanceof \DateTimeInterface);
+        self::assertInstanceOf(\DateTimeInterface::class, $result);
         self::assertSame($expected, $result->format('Y-m-d H:i:s'));
     }
 
@@ -255,7 +275,7 @@ class ValueConverterTest extends TestCase
     {
         $result = $this->vc->convert($input, '?'.\DateTimeInterface::class);
 
-        self::assertTrue($result instanceof \DateTimeInterface);
+        self::assertInstanceOf(\DateTimeInterface::class, $result);
         self::assertSame($expected, $result->format('Y-m-d H:i:s'));
     }
 
@@ -264,7 +284,7 @@ class ValueConverterTest extends TestCase
     {
         $result = $this->vc->convert($input, \DateTimeImmutable::class);
 
-        self::assertTrue($result instanceof \DateTimeImmutable);
+        self::assertInstanceOf(\DateTimeImmutable::class, $result);
         self::assertSame($expected, $result->format('Y-m-d H:i:s'));
     }
 
@@ -273,21 +293,22 @@ class ValueConverterTest extends TestCase
     {
         $result = $this->vc->convert($input, '?'.\DateTimeImmutable::class);
 
-        self::assertTrue($result instanceof \DateTimeImmutable);
+        self::assertInstanceOf(\DateTimeImmutable::class, $result);
         self::assertSame($expected, $result->format('Y-m-d H:i:s'));
     }
 
     /**
-     * @return array<string[]>
+     * @return \Iterator<array<string>>
      */
-    public static function nullValuesProvider(): array
+    public static function nullValuesProvider(): \Iterator
     {
-        return [
-            [''],
-            ['null'],
-            ['NULL'],
-            ['Null'],
-        ];
+        yield [''];
+
+        yield ['null'];
+
+        yield ['NULL'];
+
+        yield ['Null'];
     }
 
     #[DataProvider('nullValuesProvider')]

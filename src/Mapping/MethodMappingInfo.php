@@ -16,7 +16,7 @@ final class MethodMappingInfo extends MappingInfo
 {
     public function __construct(
         string $targetType,
-        private string $methodName,
+        private readonly string $methodName,
         int $sourceIndex,
     ) {
         parent::__construct($targetType, $sourceIndex);
@@ -24,7 +24,7 @@ final class MethodMappingInfo extends MappingInfo
 
     public function setValue(object $object, mixed $value): void
     {
-        // @phpstan-ignore-next-line
+        // @phpstan-ignore method.dynamicName
         $object->{$this->methodName}($value);
     }
 }

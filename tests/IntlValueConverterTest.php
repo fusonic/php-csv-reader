@@ -12,7 +12,7 @@ namespace Fusonic\CsvReader\Tests;
 use Fusonic\CsvReader\Conversion\IntlValueConverter;
 use PHPUnit\Framework\TestCase;
 
-class IntlValueConverterTest extends TestCase
+final class IntlValueConverterTest extends TestCase
 {
     private IntlValueConverter $vc;
 
