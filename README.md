@@ -1,9 +1,9 @@
 # CSV Reader
 
-[![License](https://img.shields.io/packagist/l/fusonic/csv-reader?color=blue)](https://github.com/fusonic/php-csv-reader/blob/master/LICENSE)
+[![License](https://img.shields.io/packagist/l/fusonic/csv-reader?color=blue)](https://github.com/fusonic/php-csv-reader/blob/main/LICENSE)
 [![Latest Version](https://img.shields.io/github/tag/fusonic/php-csv-reader.svg?color=blue)](https://github.com/fusonic/php-csv-reader/releases)
 [![Total Downloads](https://img.shields.io/packagist/dt/fusonic/csv-reader.svg?color=blue)](https://packagist.org/packages/fusonic/csv-reader)
-![php 8.2+](https://img.shields.io/badge/php-min%208.0-blue.svg)
+[![php 8.4+](https://img.shields.io/badge/php-%3E%3D%208.4-blue.svg)](https://github.com/fusonic/php-csv-reader/blob/main/composer.json)
 
 CSV Reader is a powerful library for PHP 8 that allows you to map data from CSV files to a strongly typed data model. It does this by utilizing PHP 8's typed properties / arguments and automatically converts string values to the types defined for your class fields.
 
@@ -17,7 +17,7 @@ composer require fusonic/csv-reader
 
 Requirements:
 
-- PHP 8.2+
+- PHP 8.4+
 
 ## Usage
 
