@@ -11,13 +11,8 @@ namespace Fusonic\CsvReader\Exceptions;
 
 final class ValueConversionException extends CsvReaderException
 {
-    public const TYPE_NOT_SUPPORTED = 1;
-    public const CONVERSION_FAILED = 2;
-
-    public function __construct(string $message, int $code = 0, ?\Throwable $previous = null)
-    {
-        parent::__construct($message, $code, $previous);
-    }
+    public const int TYPE_NOT_SUPPORTED = 1;
+    public const int CONVERSION_FAILED = 2;
 
     public static function fromValueAndTargetType(string $value, string $targetType, ?\Throwable $innerException = null): self
     {

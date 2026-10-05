@@ -11,13 +11,8 @@ namespace Fusonic\CsvReader\Exceptions;
 
 final class MappingException extends CsvReaderException
 {
-    public const MULTIPLE_MAPPING_ATTRIBUTES_FOUND = 1;
-    public const COLUMN_NOT_FOUND = 2;
-    public const MISSING_HEADER_ROW = 3;
-    public const UNSUPPORTED_MAPPING_ATTRIBUTE = 4;
-
-    public function __construct(string $message, int $code = 0, ?\Throwable $previous = null)
-    {
-        parent::__construct($message, $code, $previous);
-    }
+    public const int MULTIPLE_MAPPING_ATTRIBUTES_FOUND = 1;
+    public const int COLUMN_NOT_FOUND = 2;
+    public const int MISSING_HEADER_ROW = 3;
+    public const int UNSUPPORTED_MAPPING_ATTRIBUTE = 4;
 }

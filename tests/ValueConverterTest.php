@@ -41,7 +41,7 @@ final class ValueConverterTest extends TestCase
     {
         $result = $this->vc->convert($input, 'int');
 
-        self::assertTrue(\is_int($result));
+        self::assertIsInt($result);
         self::assertSame($expected, $result);
     }
 
@@ -82,7 +82,7 @@ final class ValueConverterTest extends TestCase
     {
         $result = $this->vc->convert($input, 'float');
 
-        self::assertTrue(\is_float($result));
+        self::assertIsFloat($result);
         self::assertSame($expected, $result);
     }
 
@@ -127,7 +127,7 @@ final class ValueConverterTest extends TestCase
     {
         $result = $this->vc->convert($input, 'string');
 
-        self::assertTrue(\is_string($result));
+        self::assertIsString($result);
         self::assertSame($expected, $result);
     }
 
@@ -188,7 +188,7 @@ final class ValueConverterTest extends TestCase
     {
         $result = $this->vc->convert($input, 'bool');
 
-        self::assertTrue(\is_bool($result));
+        self::assertIsBool($result);
         self::assertSame($expected, $result);
     }
 

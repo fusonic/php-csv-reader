@@ -9,7 +9,6 @@ declare(strict_types=1);
 
 use Rector\CodeQuality\Rector\Identical\FlipTypeControlToUseExclusiveTypeRector;
 use Rector\Config\RectorConfig;
-use Rector\Php81\Rector\ClassMethod\NewInInitializerRector;
 use Rector\Php81\Rector\Property\ReadOnlyPropertyRector;
 use Rector\PHPUnit\CodeQuality\Rector\Class_\PreferPHPUnitThisCallRector;
 
@@ -19,7 +18,7 @@ return RectorConfig::configure()
         __DIR__.'/tests',
     ])
     ->withPHPStanConfigs([__DIR__.'/phpstan.neon'])
-    ->withPhpSets(php82: true)
+    ->withPhpSets(php84: true)
     ->withComposerBased(
         phpunit: true,
         symfony: true,
@@ -36,11 +35,6 @@ return RectorConfig::configure()
     )
     ->withSkip([
         FlipTypeControlToUseExclusiveTypeRector::class,
-        NewInInitializerRector::class => [
-            // TODO Remove in v0.6.0 or v1.0.0
-            // ↓ This would break backwards compatibility
-            __DIR__.'/src/CsvReader.php',
-        ],
         PreferPHPUnitThisCallRector::class,
         // ↓ This would break backwards compatibility
         ReadOnlyPropertyRector::class,

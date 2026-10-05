@@ -75,7 +75,9 @@ final class MappingBuilder
 
         if ($attribute instanceof IndexMapping) {
             return $attribute->getIndex();
-        } elseif ($attribute instanceof TitleMapping) {
+        }
+
+        if ($attribute instanceof TitleMapping) {
             if (null === $header) {
                 throw new MappingException('CSV has no header row. So using TitleAttribute is not valid.', MappingException::MISSING_HEADER_ROW);
             }

@@ -17,7 +17,7 @@ class IntlValueConverter extends ValueConverter
 
     public function __construct(string $locale)
     {
-        $this->numberFormatter = new \NumberFormatter($locale, \NumberFormatter::TYPE_DEFAULT);
+        $this->numberFormatter = new \NumberFormatter($locale, \NumberFormatter::PATTERN_DECIMAL);
     }
 
     public function convert(string $value, string $targetType): mixed

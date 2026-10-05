@@ -9,14 +9,14 @@ declare(strict_types=1);
 
 use PhpCsFixer\Runner\Parallel\ParallelConfigFactory;
 
-$finder = (new PhpCsFixer\Finder())
+$finder = new PhpCsFixer\Finder()
     ->in(__DIR__)
     ->exclude('example');
 
-return (new PhpCsFixer\Config())
+return new PhpCsFixer\Config()
     ->setParallelConfig(ParallelConfigFactory::detect())
     ->setRules([
-        '@PHP8x2Migration' => true,
+        '@PHP8x4Migration' => true,
         '@Symfony' => true,
         '@Symfony:risky' => true,
         'declare_strict_types' => true,
