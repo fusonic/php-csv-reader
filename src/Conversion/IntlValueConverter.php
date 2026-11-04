@@ -20,6 +20,7 @@ class IntlValueConverter extends ValueConverter
         $this->numberFormatter = new \NumberFormatter($locale, \NumberFormatter::PATTERN_DECIMAL);
     }
 
+    #[\Override]
     public function convert(string $value, string $targetType): mixed
     {
         if ($this->isNullValue($value, $targetType)) {

@@ -15,22 +15,10 @@ use Fusonic\CsvReader\Mapping\MappingInfo;
 
 class CsvReader
 {
-    private CsvReaderOptions $options;
-
-    public function __construct(private mixed $file, ?CsvReaderOptions $options = null)
-    {
-        if (2 === \func_num_args() && null === $options) {
-            trigger_deprecation(
-                'fusonic/csv-reader',
-                '0.5.2',
-                'Passing null as the $options parameter to "%s()" is deprecated and will not be supported in the next major version. Pass a "%s" instance instead.',
-                __METHOD__,
-                CsvReaderOptions::class
-            );
-        }
-
-        $this->options = $options ?? new CsvReaderOptions();
-
+    public function __construct(
+        private mixed $file,
+        private CsvReaderOptions $options = new CsvReaderOptions(),
+    ) {
         if (!\is_string($file) && !\is_resource($file)) {
             throw new \TypeError(
                 'Fusonic\\CsvReader\\CsvReader::__construct(): Argument #1 ($file) must be of type string or resource.'
